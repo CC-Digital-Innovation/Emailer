@@ -42,7 +42,8 @@ encounter any problems, please log an
 5. Submit a pull request ツ
 
 ## History
--  version 1.0.0 (initial release) - 2021/03/17
+- version 1.1.0 (added CC and BCC support) - 2021/04/12
+- version 1.0.0 (initial release) - 2021/03/17
 
 ## Credits
 Anthony Farina <<farinaanthony96@gmail.com>>

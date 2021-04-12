@@ -1,6 +1,6 @@
 import configparser
-import smtplib
 import email.utils
+import smtplib
 
 from configparser import ExtendedInterpolation
 from email import encoders
@@ -14,7 +14,7 @@ __author__ = 'Anthony Farina'
 __copyright__ = 'Copyright 2021, Emailer'
 __credits__ = ['Anthony Farina']
 __license__ = 'MIT'
-__version__ = '1.0.0'
+__version__ = '1.1.0'
 __maintainer__ = 'Anthony Farina'
 __email__ = 'farinaanthony96@gmail.com'
 __status__ = 'Released'
@@ -33,7 +33,10 @@ SMTP_PASSWORD = CONFIG['SMTP Info']['password']
 # Prepare party-related variables from the config file.
 SENDER = CONFIG['Parties']['sender']
 SENDER_NAME = CONFIG['Parties']['sender_name']
-RECIPIENT = CONFIG['Parties']['recipient']
+RECIPIENTS = CONFIG['Parties']['recipients'].replace('\n', '').split(',')
+CC = CONFIG['Parties']['cc'].replace('\n', '').split(',')
+BCC = CONFIG['Parties']['bcc'].replace('\n', '').split(',')
+ALL_RECIPIENTS = RECIPIENTS + CC + BCC
 
 # Prepare message content variables from the config file.
 SUBJECT = CONFIG['Message Contents']['subject']
@@ -50,7 +53,8 @@ def emailer() -> None:
     message = MIMEMultipart()
     message['Subject'] = SUBJECT
     message['From'] = email.utils.formataddr((SENDER_NAME, SENDER))
-    message['To'] = RECIPIENT
+    message['To'] = ', '.join(RECIPIENTS)
+    message['Cc'] = ', '.join(CC)
 
     # Attach the message body to the email.
     msg_attachment = MIMEText(MSG_BODY, 'plain')
@@ -84,7 +88,7 @@ def emailer() -> None:
 
         # Login and send the email.
         server.login(SMTP_USERNAME, SMTP_PASSWORD)
-        server.sendmail(SENDER, RECIPIENT, message.as_string())
+        server.sendmail(SENDER, ALL_RECIPIENTS, message.as_string())
 
         # Close the connection to the SMTP server.
         server.close()
