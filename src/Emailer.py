@@ -1,5 +1,6 @@
 import configparser
 import email.utils
+import os
 import smtplib
 
 from configparser import ExtendedInterpolation
@@ -14,7 +15,7 @@ __author__ = 'Anthony Farina'
 __copyright__ = 'Copyright 2021, Emailer'
 __credits__ = ['Anthony Farina']
 __license__ = 'MIT'
-__version__ = '1.1.0'
+__version__ = '1.1.1'
 __maintainer__ = 'Anthony Farina'
 __email__ = 'farinaanthony96@gmail.com'
 __status__ = 'Released'
@@ -22,7 +23,7 @@ __status__ = 'Released'
 
 # Prepare the config file reference.
 CONFIG = configparser.ConfigParser(interpolation=ExtendedInterpolation())
-CONFIG.read('../config.ini')
+CONFIG.read(os.path.dirname(os.path.realpath(__file__)) + '/../config.ini')
 
 # Prepare SMTP-related variables from the config file.
 SMTP_SERVER = CONFIG['SMTP Info']['server']
