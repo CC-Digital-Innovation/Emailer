@@ -15,7 +15,7 @@ __author__ = 'Anthony Farina'
 __copyright__ = 'Copyright 2021, Emailer'
 __credits__ = ['Anthony Farina']
 __license__ = 'MIT'
-__version__ = '1.1.1'
+__version__ = '1.1.2'
 __maintainer__ = 'Anthony Farina'
 __email__ = 'farinaanthony96@gmail.com'
 __status__ = 'Released'
@@ -23,7 +23,8 @@ __status__ = 'Released'
 
 # Prepare the config file reference.
 CONFIG = configparser.ConfigParser(interpolation=ExtendedInterpolation())
-CONFIG.read(os.path.dirname(os.path.realpath(__file__)) + '/../config.ini')
+CONFIG_PATH = '/../configs/Emailer-Python-config.ini'
+CONFIG.read(os.path.dirname(os.path.realpath(__file__)) + CONFIG_PATH)
 
 # Prepare SMTP-related variables from the config file.
 SMTP_SERVER = CONFIG['SMTP Info']['server']
@@ -49,7 +50,7 @@ ATTACHMENTS = CONFIG['Message Contents']['attachments'].split(',')
 # address using the SMTP server specified in the config file. The email
 # contains a subject, message body, and attachments also specified in the
 # config file.
-def emailer() -> None:
+def emailer_python() -> None:
     # Prepare the MIME object for the email.
     message = MIMEMultipart()
     message['Subject'] = SUBJECT
@@ -104,4 +105,4 @@ def emailer() -> None:
 # Main method that runs the emailer script.
 if __name__ == '__main__':
     # Run the script.
-    emailer()
+    emailer_python()

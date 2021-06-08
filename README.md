@@ -42,6 +42,11 @@ encounter any problems, please log an
 5. Submit a pull request ツ
 
 ## History
+- version 1.1.2 - 2021/06/08
+    - Added support for multiple config files
+    - Updated README.md
+
+
 - version 1.1.1 - 2021/05/17
     - Made relative path for config.ini
     - Adjusted README.md
