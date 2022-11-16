@@ -15,7 +15,7 @@ __author__ = 'Anthony Farina'
 __copyright__ = 'Copyright 2021, Emailer'
 __credits__ = ['Anthony Farina']
 __license__ = 'MIT'
-__version__ = '1.1.3'
+__version__ = '1.1.4'
 __maintainer__ = 'Anthony Farina'
 __email__ = 'farinaanthony96@gmail.com'
 __status__ = 'Released'
@@ -28,7 +28,7 @@ CONFIG.read(os.path.dirname(os.path.realpath(__file__)) + CONFIG_PATH)
 
 # Prepare SMTP-related variables from the config file.
 SMTP_SERVER = CONFIG['SMTP Info']['server']
-SMTP_PORT = CONFIG['SMTP Info']['port']
+SMTP_PORT = int(CONFIG['SMTP Info']['port'])
 SMTP_USERNAME = CONFIG['SMTP Info']['username']
 SMTP_PASSWORD = CONFIG['SMTP Info']['password']
 

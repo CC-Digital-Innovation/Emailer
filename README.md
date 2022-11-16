@@ -42,6 +42,10 @@ encounter any problems, please log an
 5. Submit a pull request ツ
 
 ## History
+- version 1.1.4 - 2022/11/16
+    - Need to convert port to int for SMTP method
+
+
 - version 1.1.3 - 2022/11/16
     - Removed license from README.md (already a LICENSE file)
 
